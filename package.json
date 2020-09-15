@@ -2,6 +2,7 @@
   "name": "eslint-plugin-await-in-async",
   "version": "0.1.0",
   "main": "dist",
+  "author": "Jason <jason.daurus@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -20,5 +21,6 @@
     "jest": "^26.4.2",
     "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
-  }
+  },
+  "repository": "git@github.com:gzzhanghao/eslint-plugin-await-in-async.git"
 }
