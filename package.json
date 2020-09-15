@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-await-in-async",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist",
   "author": "Jason <jason.daurus@gmail.com>",
   "license": "MIT",
