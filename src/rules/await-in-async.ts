@@ -3,9 +3,15 @@ import {
   TSESTree,
 } from '@typescript-eslint/experimental-utils';
 
+import { RuleListener } from '@typescript-eslint/experimental-utils/dist/ts-eslint';
+
 import { createRule } from '../util';
 
-export default createRule({
+export interface AwaitInAsyncOptions {
+  topLevelAwait?: 'allow' | 'never'
+}
+
+export default createRule<[AwaitInAsyncOptions], string, RuleListener>({
   name: 'await-in-async',
   meta: {
     type: 'problem',
@@ -17,15 +23,39 @@ export default createRule({
     },
     messages: {
       missingAsync: `Can not use keyword 'await' outside an async function`,
+      topLevelAwait: `Top-level await is not allowed`,
     },
-    schema: [],
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          topLevelAwait: {
+            type: 'string',
+            enum: ['allow', 'never'],
+            default: 'never',
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
-  defaultOptions: [],
+  defaultOptions: [
+    {
+      topLevelAwait: 'never',
+    },
+  ],
   create(context) {
+    const options = context.options[0] || {}
     return {
       AwaitExpression(node: TSESTree.AwaitExpression) {
         const fn = findContextFunction(node.parent);
-        if (!fn?.async) {
+        if (!fn) {
+          if (options.topLevelAwait !== 'allow') {
+            context.report({ messageId: 'topLevelAwait', node });
+          }
+          return
+        }
+        if (!fn.async) {
           context.report({ messageId: 'missingAsync', node });
         }
       },

@@ -29,14 +29,24 @@ function foo() {
   }
 }
       `,
-    }
+    },
+    {
+      options: [
+        {
+          topLevelAwait: 'allow',
+        },
+      ],
+      code: `
+await foo;
+      `,
+    },
   ],
   invalid: [
     {
       code: `await bar`,
       errors: [
         {
-          messageId: 'missingAsync',
+          messageId: 'topLevelAwait',
           data: { type: 'string' },
           line: 1,
           column: 1,
