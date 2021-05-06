@@ -22,8 +22,8 @@ export default createRule<[AwaitInAsyncOptions], string, RuleListener>({
       requiresTypeChecking: false,
     },
     messages: {
-      missingAsync: `Can not use keyword 'await' outside an async function`,
-      topLevelAwait: `Top-level await is not allowed`,
+      missingAsync: 'Can not use keyword \'await\' outside an async function',
+      topLevelAwait: 'Top-level await is not allowed',
     },
     schema: [
       {
@@ -45,7 +45,7 @@ export default createRule<[AwaitInAsyncOptions], string, RuleListener>({
     },
   ],
   create(context) {
-    const options = context.options[0] || {}
+    const options = context.options[0] || {};
     return {
       AwaitExpression(node: TSESTree.AwaitExpression) {
         const fn = findContextFunction(node.parent);
@@ -53,7 +53,7 @@ export default createRule<[AwaitInAsyncOptions], string, RuleListener>({
           if (options.topLevelAwait !== 'allow') {
             context.report({ messageId: 'topLevelAwait', node });
           }
-          return
+          return;
         }
         if (!fn.async) {
           context.report({ messageId: 'missingAsync', node });

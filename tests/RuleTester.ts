@@ -7,4 +7,6 @@ function getFixturesRootDir(): string {
 
 const { batchedSingleLineTests, RuleTester, noFormat } = ESLintUtils;
 
-export { batchedSingleLineTests, getFixturesRootDir, noFormat, RuleTester };
+export {
+  batchedSingleLineTests, getFixturesRootDir, noFormat, RuleTester,
+};

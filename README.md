@@ -10,9 +10,9 @@ npm i -D eslint-plugin-await-in-async
 
 ```js
 module.exports = {
-  rules: {
-    'await-in-async/await-in-async': 'error'
-  }
+  extends: [
+    'plugin:await-in-async/base'
+  ]
 }
 ```
 

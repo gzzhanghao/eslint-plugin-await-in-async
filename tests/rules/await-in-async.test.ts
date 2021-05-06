@@ -1,5 +1,5 @@
 import { ESLintUtils } from '@typescript-eslint/experimental-utils';
-import rule from '../../src/rules/await-in-async'
+import rule from '../../src/rules/await-in-async';
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: '@typescript-eslint/parser',
@@ -43,14 +43,14 @@ await foo;
   ],
   invalid: [
     {
-      code: `await bar`,
+      code: 'await bar',
       errors: [
         {
           messageId: 'topLevelAwait',
           data: { type: 'string' },
           line: 1,
           column: 1,
-        }
+        },
       ],
     },
     {
@@ -65,7 +65,7 @@ function foo() {
           data: { type: 'string' },
           line: 3,
           column: 3,
-        }
+        },
       ],
     },
     {
@@ -82,7 +82,7 @@ async function foo() {
           data: { type: 'string' },
           line: 4,
           column: 5,
-        }
+        },
       ],
     },
     {
@@ -99,7 +99,7 @@ async function foo() {
           data: { type: 'string' },
           line: 4,
           column: 5,
-        }
+        },
       ],
     },
   ],
